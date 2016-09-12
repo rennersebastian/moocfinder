@@ -56,7 +56,7 @@ class CourseraScraper
 	# Remove unused attributes and rename keys to fit database
 	def self.createInstructorHash
 		@@INSTRUCTORS.each do |instructor|		
-			if instructor['firstName'] = nil ||instructor['lastName'] = nil
+			if instructor['firstName'] != nil ||instructor['lastName'] != nil
 				instructorHash = { 
 					"fullName" => instructor['fullName'], 
 					"i_id" => instructor['id'], 
