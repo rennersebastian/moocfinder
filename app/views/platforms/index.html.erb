@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Platforms</h1>
+	<%= render partial: "pager", locals: { keywords: @keywords, page: @page } %>
+	<ol class="list-group">
+		<% @platforms.each do |platform| %>
+			<li class="list-group-item clearfix">
+				<h4 class="pull-right">
+				<%= link_to 'Platform details', platform %>
+				</h4>
+				<h3><%= platform.name  %></h3>
+				<small><%= platform.description %></small>
+				<p><%= platform.address %></p>
+			</li>
+		<% end %>
+	</ol>
+	<%= render partial: "pager", locals: { keywords: @keywords, page: @page } %>

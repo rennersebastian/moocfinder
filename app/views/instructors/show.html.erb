@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Instructor details</h1>
+
+<p>
+  <strong>Title:</strong>
+  <%= @instructor.title %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @instructor.firstName %>
+</p>
+
+<p>
+  <strong>Middle name:</strong>
+  <%= @instructor.middleName %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @instructor.lastName %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @instructor.department %>
+</p>
+
+<p>
+  <strong>Bio:</strong>
+  <%= @instructor.bio %>
+</p>
+
+<p>
+	<strong>Courses:</strong>
+	<% @instructor.courses.each do |a| %>
+		<%= a.name %> <%= link_to 'Show', a %><br />
+	<% end %>
+</p>
+
+<p>
+  <strong>Links:</strong>
+  <%= @instructor.website %> <br />
+  <%= @instructor.websiteTwitter %> <br />
+  <%= @instructor.websiteFacebook %> <br />
+  <%= @instructor.websiteLinkedin %> <br />
+  <%= @instructor.websiteGplus %> <br />
+</p>
+<%= link_to 'Back', instructors_path %>

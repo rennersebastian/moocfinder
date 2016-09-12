@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @review.rating %>
+</p>
+
+<p>
+  <strong>Review:</strong>
+  <%= @review.review %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= User.find(@review.user_id).email %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= Course.find(@review.course_id).name %>
+</p>
+<%= link_to 'Edit', edit_review_path(@review) %> |
+<%= link_to 'Back', reviews_path %>

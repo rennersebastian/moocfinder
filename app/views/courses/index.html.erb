@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<section class="search-results">
+	<%= render partial: "pager", locals: { keywords: @keywords, page: @page } %>
+	<ol class="list-group">
+		<% @courses.each do |course| %>
+			<li class="list-group-item clearfix">
+				<h4 class="pull-right">
+				<%= link_to 'Course details', course %>
+				</h4>
+				<h3><%= course.name  %>
+					<small><%= Platform.find(course.platform_id).name %></small>
+				</h3>
+				<% course.categories.each do |a| %>
+						<strong><%= a.name %></strong>
+				<% end %>
+				<p><%= course.courseURL %></p>
+			</li>
+		<% end %>
+	</ol>
+	<%= render partial: "pager", locals: { keywords: @keywords, page: @page } %>
+</section>

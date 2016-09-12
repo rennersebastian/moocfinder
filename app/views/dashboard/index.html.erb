@@ -1,0 +1,20 @@
+<header>
+	<h1>
+		MOOCFinder, <%= current_user.email %>
+	</h1>
+</header>
+<section>
+	<p>
+		<% @user.reviews.each do |a| %>
+			<h4>Course:</h4>
+			<strong><%= Course.find(a.course_id).name %></strong> <br />
+			<%= link_to 'Got to course', course_path(a.course_id) %> <br />
+			<strong>Edit</strong> <br />
+			<%= link_to 'Edit review', edit_review_path(a) %>
+		<% end %>
+	</p>
+	<p>
+		<%= link_to "Edit your profile", edit_user_registration_path %>
+	</p>
+	<%= link_to "Log Out", destroy_user_session_path, method: :delete %>
+</section>

@@ -1,0 +1,16 @@
+<nav>
+	<ul class="pager">
+		<% if page != 0 %>
+			<li class="previous <%= page == 0 ? 'disabled' : '' %>">
+				<%= link_to_if page > 0, "&larr; Previous".html_safe,
+				platforms_path(keywords: keywords, page: page - 1) %>
+			</li>
+		<% end %>
+		<% if (page+1)*10 < @platforms.count %>
+			<li class="next">
+				<%= link_to "Next &rarr;".html_safe,
+				platforms_path(keywords: keywords, page: page + 1) %>
+			</li>
+		<% end %>
+	</ul>
+</nav>

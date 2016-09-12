@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Instructors</h1>
+	<%= render partial: "pager", locals: { keywords: @keywords, page: @page } %>
+	<ol class="list-group">
+		<% @instructors.each do |instructor| %>
+			<li class="list-group-item clearfix">
+				<h4 class="pull-right">
+				<%= link_to 'Instructor details', instructor %>
+				</h4>
+				<h3>
+					<%= instructor.firstName %> <%= instructor.lastName %>
+					<small><%= instructor.department %></small>
+					</h3>
+			</li>
+		<% end %>
+	</ol>
+	<%= render partial: "pager", locals: { keywords: @keywords, page: @page } %>

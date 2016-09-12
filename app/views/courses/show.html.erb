@@ -1,0 +1,90 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Course details</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @course.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @course.description %>
+</p>
+
+<p>
+  <strong>Categories:</strong>
+	<% @course.categories.each do |a| %>
+		<%= a.name %> <br />
+	<% end %>
+</p>
+
+<p>
+	<strong>Instructors:</strong>
+	<% @course.instructors.each do |a| %>
+		<%= a.firstName %>
+		<%= a.lastName %> 
+		<%= link_to 'Show', a %><br />
+	<% end %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @course.courseURL %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= number_with_precision(@course.rating, precision: 2) %>
+</p>
+
+<p>
+	<strong>Languages:</strong>
+	<% @course.languages.each do |a| %>
+		<%= a %> <br />
+	<% end %>
+</p>
+
+<p>
+	<strong>Platform:</strong>
+	<%= Platform.find(@course.platform_id).name %>
+</p>
+
+<% if @course.try(:startDate?) %>
+    <p>
+	  <strong>Name:</strong>
+	  <%= @course.startDate %>
+	</p>
+ <% end %>
+ 
+ <h2>Reviews</h2> 
+<p>
+	<% @course.reviews.each do |a| %>
+		<h4>Review</h4>
+		<strong>Rating:</strong>
+		<%= a.rating %> <br />
+		<strong>Review text:</strong>
+		<%= a.review %> <br />
+		<% if user_signed_in? %>
+			<% if a.user_id = current_user.id %>
+				<%= link_to 'Edit', edit_review_path(a) %>
+			<% end %>
+		<% end %>
+	<% end %>
+</p>
+
+<% if user_signed_in? %>
+	<% if !@course.reviews.any? %>
+		<%= render "reviews/new" %>
+	<% else %>
+		<% @course.reviews.each do |a| %>
+			<% if a.user_id = current_user.id %>
+				<p>bla</p>
+			<% else %>
+				<%= render "reviews/new" %>
+			<% end %>
+		<% end %>
+	<% end %>
+<% end %>
+ 
+<%= link_to 'Back', courses_path %>

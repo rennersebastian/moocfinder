@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Categories</h1>
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+		<% @categories.each_with_index do |category, index| %>
+			<div class="panel-heading" role="tab" id="<&= index.to_s %>">
+			  <h4 class="panel-title">
+				<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index.to_s %>" aria-expanded="true" aria-controls="collapse<&= index.to_s %>">
+				  <%= category.name %>
+				</a>
+			  </h4>
+			</div>
+			<div id="collapse<&= index.to_s %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading<&= index.to_s %>">
+			  <div class="panel-body">
+				<%= link_to 'Show', category %>
+			  </div>
+			</div>
+		<% end %>
+  </div>
+</div>

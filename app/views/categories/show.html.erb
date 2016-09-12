@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @category.name %>
+</p>
+
+<p>
+  <strong>Courses:</strong>
+	<% @category.courses.each do |a| %>
+		<%= a.name %> 
+		<%= link_to 'Show', course_path(a) %><br />
+	<% end %>
+</p>
+
+<%= link_to 'Back', categories_path %>
