@@ -2,7 +2,7 @@ class ScraperController < ApplicationController
 	before_action :ensure_admin
 	
 	def index
-		CourseraScraper.initialize
+		#CourseraScraper.initialize
 		UdacityScraper.initialize
 		redirect_to '/'
 	end
