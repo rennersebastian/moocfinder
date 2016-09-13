@@ -3,6 +3,7 @@ class ScraperController < ApplicationController
 	
 	def index
 		CourseraScraper.initialize
+		UdacityScraper.initialize
 		redirect_to '/'
 	end
 	

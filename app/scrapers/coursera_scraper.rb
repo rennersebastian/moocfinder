@@ -56,7 +56,7 @@ class CourseraScraper
 	# Remove unused attributes and rename keys to fit database
 	def self.createInstructorHash
 		@@INSTRUCTORS.each do |instructor|		
-			if instructor['firstName'] != nil ||instructor['lastName'] != nil
+			if instructor['firstName'] != "" && instructor['lastName'] != ""
 				instructorHash = { 
 					"fullName" => instructor['fullName'], 
 					"i_id" => instructor['id'], 
@@ -134,12 +134,15 @@ class CourseraScraper
 		ids.each do |id|
 			string = "i_id = " + id
 			
-			idHash = { 
-				"course_id" => createdCourse['id'],
-				"instructor_id" => Instructor.where(string).take['id']
-			}
-			
-			CourseInstructor.create(idHash)
+			if(Instructor.where(string).present?)
+				puts Instructor.where(string).inspect
+				idHash = { 
+					"course_id" => createdCourse['id'],
+					"instructor_id" => Instructor.where(string).take['id']
+				}
+				
+				CourseInstructor.create(idHash)
+			end
 		end
 		catIds.each do |id|
 			string = "i_id = " + id

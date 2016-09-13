@@ -3,7 +3,43 @@
 	
 	<h3 class="hl">The Source for MOOCs</h3>
 	
-	<p>
-		Massive Open Online Courses (MOOCs) are one of the leading trends, when it comes to online education and learning.
-	</p>
+	<h4>Find the MOOC you're looking for!</h4>
+	<% if @category != nil && @course != nil && @platform != nil %>
+		<ol class="list-group">
+			<li class="list-group-item clearfix">
+				<h4 class="pull-right">
+				<%= link_to 'Course details', @course %>
+				</h4>
+				<h3><%= @course.name  %>
+					<small><%= Platform.find(@course.platform_id).name %></small>
+				</h3>
+				<% @course.categories.each do |a| %>
+						<strong><%= a.name %></strong>
+				<% end %>
+				<p><a target="_blank" href="<%= @course.courseURL %>">Go to Class</a></p>
+			</li>
+		</ol>
+		<h4>Provided by the biggest platforms!</h4>
+		<ol class="list-group">
+			<li class="list-group-item clearfix">
+				<h4 class="pull-right">
+				<%= link_to 'Platform details', @platform %>
+				</h4>
+				<h3><%= @platform.name  %></h3>
+				<%= image_tag "platforms/coursera.jpg", class: "img", alt: "Coursera logo"%>
+				<p><a target="_blank" href="<%= @platform.address %>">Visit</a></p>
+			</li>
+		</ol>
+		<h4>Browse our categories!</h4>
+		<ol class="list-group">
+			<li class="list-group-item clearfix">
+				<h4 class="pull-right">
+				<%= link_to 'Courses', @category %>
+				</h4>
+				<h3><%= Category  %></h3>
+				<p><%= @category.name %></p>
+			</li>
+		</ol>
+	<% end %>
+	<h4>Share your experience with others!</h4>
 </section>
